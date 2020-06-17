@@ -1,0 +1,55 @@
+######################################
+### Variables (from left to right) ###
+######################################
+SUBJECT
+- Participant ID
+
+TEXT
+- Text ID ("Netz" = semantic networks; "Wind" = the physics of wind; "Spek" = speculation bubbles)
+
+OSPAN
+- Operation Span score (normalized; 0-1)
+
+SSPAN
+- Symmetry Span score (normalized; 0-1)
+
+COM1
+- Comprehension test parcel 1 (average of three items; 0-3)
+COM2
+- Comprehension test parcel 2 (average of three items; 0-3)
+COM3
+- Comprehension test parcel 3 (average of three items; 0-3)
+
+INT1
+- Interest item "I found this text interesting" (0-3)
+INT2
+- Interest item "I like to read about such topics" (0-3)
+INT3
+- Interest item "I found the topics in this text very stimulating" (0-3)
+
+FAM1
+- Topic familiarity item "I have read or heard about these things many times before" (0-3)
+FAM2
+- Topic familiarity item "My prior knowledge helped a lot to understand this text" (0-3)
+FAM3
+- Topic familiarity item "I am familiar with the topics of this text" (0-3)
+
+VOL
+- Probe-caught voluntary mind wandering (normalized; 0-1)
+INV
+- Probe-caught Involuntary mind wandering (normalized; 0-1)
+
+
+
+######################################
+### Notes                          ###
+######################################
+1. Missing values are labeled "999999".
+
+2. Text order was counterbalanced depending on participant ID (despite appearing in only one order in the table).
+
+3. There are some IDs missing in the sequence. These are no-shows or instances of equipment error. In the latter case, partial data of the participant was discarded completely and a replacement was scheduled to reach the target sample size of 180.
+
+4. Replacement IDs are the ones > 180. (repl_ID = old_ID + 180; so ID 181 is a replacement for ID 1).  
+
+

@@ -1,0 +1,77 @@
+DATA:
+  file is "Reading.csv";
+
+VARIABLE:
+  names are
+    SUBJECT
+    TEXT
+    OSPAN
+    SSPAN
+    COM1
+    COM2
+    COM3
+    INT1
+    INT2
+    INT3
+    FAM1
+    FAM2
+    FAM3
+    VOL
+    INV
+    ;
+
+  usevar are
+    SUBJECT
+    OSPAN
+    SSPAN
+    COM1
+    COM2
+    COM3
+    INT1
+    INT2
+    INT3
+    FAM1
+    FAM2
+    FAM3
+    VOL
+    INV
+  ;
+    
+  categorical are
+    INT1 INT2 INT3
+    FAM1 FAM2 FAM3
+  ;
+
+  cluster = SUBJECT;
+  missing = all(999999)
+
+ANALYSIS:
+  type = complex;
+ 
+MODEL:   
+
+  ! Latent variables
+  lat_COM by COM1 COM2 COM3; 
+  lat_INT by INT1 INT2 INT3;
+  lat_FAM by FAM1 FAM2 FAM3;
+  lat_WMC by OSPAN SSPAN;
+    
+  ! Regressions
+  lat_COM on lat_WMC lat_INT lat_FAM VOL INV; 
+  VOL on lat_WMC lat_INT lat_FAM;
+  INV on lat_WMC lat_INT lat_FAM; 
+
+  ! Covariances
+  VOL with INV;
+  lat_INT with lat_WMC;
+  lat_FAM with lat_WMC;
+  lat_INT with lat_FAM;
+
+! Mediators
+MODEL INDIRECT:
+  lat_COM ind lat_WMC;
+  lat_COM ind lat_INT;
+  lat_COM ind lat_FAM;
+
+OUTPUT:
+  standardized;

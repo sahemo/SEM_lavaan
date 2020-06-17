@@ -1,0 +1,27 @@
+
+# latent variable definitions 
+
+lat_COM =~ COM1 + COM2 + COM3 
+lat_INT =~ INT1 + INT2 + INT3
+lat_FAM =~ FAM1 + FAM2 + FAM3
+lat_WMC =~ OSPAN + SSPAN
+
+
+
+# regressions
+
+lat_COM ~ lat_WMC + lat_INT + lat_FAM + VOL + INV
+VOL ~ lat_WMC + lat_INT + lat_FAM
+INV ~ lat_WMC + lat_INT + lat_FAM
+
+
+# mediators
+
+
+# variances and covariances 
+
+VOL ~~ INV
+lat_INT ~~ lat_WMC
+lat_FAM ~~ lat_WMC
+lat_INT ~~ lat_FAM
+
