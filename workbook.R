@@ -39,8 +39,10 @@ fit <- sem(model = myModel, data = df, cluster = 'SUBJECT')
 summary(fit, standardized=TRUE)
 
 
-labels = list(lat_INT = "Interest", lat_FAM = "Familarity", lat_WMC = "WMC", lat_COM = "Reading")
+labels = list(lat_INT = "Interest", lat_FAM = "Familarity", lat_WMC = "WMC", lat_COM = "Reading", VOL = "Voluntary MW", INV = "Involuntary MW")
 
 lavaanPlot(model = fit, stand = TRUE, 
            labels = labels, node_options = list(shape = "box", fontname = "Helvetica"), 
            edge_options = list(color = "grey"), coef = TRUE)
+
+
