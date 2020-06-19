@@ -4,9 +4,9 @@ author: "Sabbir Ahmed Hemo"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 always_allow_html: yes
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -87,7 +87,7 @@ lat_FAM ~~ lat_WMC
 
 
 
-fit.lv.model <- cfa(model = corr.lv.model, data = df, cluster = 'SUBJECT') # Confirmatory factor model for correlation
+fit.lv.model <- cfa(model = corr.lv.model, data = df, cluster = 'SUBJECT', ordered = paste0(rep(c("INT", "FAM"), each = 3), 1:3)) # Confirmatory factor model for correlation
 
 summary(fit.lv.model, standardized=TRUE) # In covariance table std.lv includes the correlation
 
@@ -121,7 +121,7 @@ myModel <- readLines("model.lav")
 cat(myModel, fill = TRUE)
 
 
-fit <- sem(model = myModel, data = df, cluster = 'SUBJECT')
+fit <- sem(model = myModel, data = df, cluster = 'SUBJECT', ordered = paste0(rep(c("INT", "FAM"), each = 3), 1:3))
 
 summary(fit, standardized=TRUE)
 

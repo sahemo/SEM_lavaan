@@ -82,7 +82,7 @@ lat_FAM ~~ lat_WMC
 
 
 
-fit.lv.model <- cfa(model = corr.lv.model, data = df, cluster = 'SUBJECT')
+fit.lv.model <- cfa(model = corr.lv.model, data = df, cluster = 'SUBJECT', ordered = paste0(rep(c("INT", "FAM"), each = 3), 1:3))
 
 summary(fit.lv.model, standardized=TRUE)
 
