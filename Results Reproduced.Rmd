@@ -4,9 +4,9 @@ author: "Sabbir Ahmed Hemo"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 always_allow_html: yes
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -33,14 +33,16 @@ library(rsvg)
 
 ```{r, results='markup'}
 
-df <- read_csv("Reading_Header.csv") # reading data
+
+
+df <- read_csv("Reading_Header.csv", na = '999999') # specifying missing values while reading data
 
 
 
 df <- df %>% 
-  #mutate(across(.cols = c(starts_with('INT'), starts_with('FAM')), .fns = ~as.character(.x))) %>% # recoding as character
-  mutate(across(.cols = where(is.numeric), .fns = ~ifelse(.x == 999999, NA, .x))) %>%  # recoding missing value
-  mutate(across(.cols = where(is.character), .fns = ~ifelse(.x %in% '999999', NA, .x)))   # recoding missing value
+  mutate(across(.cols = c(starts_with('INT'), starts_with('FAM')), .fns = ~as.character(.x))) # categorizing the specific variable
+
+
 
 glimpse(df)
 
@@ -52,6 +54,8 @@ summary(df)
 
 ## Code for producing Table-1
 
+
+Results can be found in Covariances table
 
 ```{r}
 
@@ -101,11 +105,16 @@ alpha(df %>% select(ends_with("PAN")))  # Estimate for WMC
 
 
 
-##  Code for producing Table-2
+##  Code for producing Table-2 and Tbale-3
+
+In the regression table Std.all includes the estimates in Table-2 and Std.lv includes estimate for Table-3. I am not clear why the sign is opposite with respect to the sign in the paper in Table-3.
+
 
 
 ```{r}
 
+
+ 
 myModel <- readLines("model.lav")
 
 
@@ -138,7 +147,7 @@ grph <- lavaanPlot(model = fit, stand = TRUE,
 
 tmp<-capture.output(rsvg_png(charToRaw(export_svg(grph)),'SEM.png'))
 
-cat('![Structural equation model with estimated standardized coefficients.](stnds.qa.png){#fig:SEM}\n\n')
+cat('![Structural equation model with estimated standardized coefficients.](SEM.png){#fig:SEM}\n\n')
 
 ```
 

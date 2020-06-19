@@ -17,14 +17,14 @@ library(rsvg)
 
 # Reading the data
 
-df <- read_csv("Reading_Header.csv")
+df <- read_csv("Reading_Header.csv", na = '999999')
 
 
 
 df <- df %>% 
-  mutate(across(.cols = c(starts_with('INT'), starts_with('FAM')), .fns = ~as.character(.x))) %>% 
-  mutate(across(.cols = where(is.numeric), .fns = ~ifelse(.x == 999999, NA, .x))) %>% 
-  mutate(across(.cols = where(is.character), .fns = ~ifelse(.x %in% '999999', NA, .x)))
+  mutate(across(.cols = c(starts_with('INT'), starts_with('FAM')), .fns = ~as.character(.x)))
+  # mutate(across(.cols = where(is.numeric), .fns = ~ifelse(.x == 999999, NA, .x))) %>% 
+  # mutate(across(.cols = where(is.character), .fns = ~ifelse(.x %in% '999999', NA, .x)))
 
 glimpse(df)
 
@@ -40,7 +40,7 @@ myModel <- readLines("model.lav")
 cat(myModel, fill = TRUE)
 
 
-fit <- sem(model = myModel, data = df, cluster = 'SUBJECT')
+fit <- sem(model = myModel, data = df, cluster = 'SUBJECT', ordered = paste0(rep(c("INT", "FAM"), each = 3), 1:3))
 
 summary(fit, standardized=TRUE)
 

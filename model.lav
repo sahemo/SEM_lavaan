@@ -10,12 +10,11 @@ lat_WMC =~ OSPAN + SSPAN
 
 # regressions
 
-lat_COM ~ lat_WMC + lat_INT + lat_FAM + VOL + INV
-VOL ~ lat_WMC + lat_INT + lat_FAM
-INV ~ lat_WMC + lat_INT + lat_FAM
+lat_COM ~ a * lat_WMC + b * lat_INT + c * lat_FAM + VOL + INV
+VOL ~ d * lat_WMC + e * lat_INT + f * lat_FAM
+INV ~ g * lat_WMC + h * lat_INT + i * lat_FAM
 
 
-# mediators
 
 
 # variances and covariances 
